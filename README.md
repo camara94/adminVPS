@@ -48,26 +48,25 @@
    et j'ajoute ces lignes ci-dessous:
 <code>
 <pre>
-    &gt;VirtualHost *:80&lt;
-        ServerName camaratek.com 
-        ServerAlias angular.camaratek.com
-        ServerAdmin contact@camaratek.com
-        DocumentRoot "/var/www/angular.camaratek.com"
-        &gt;Directory /var/www/angular.camaratek.com&lt;
-            Options Indexes FollowSymLinks MultiViews
-            AllowOverride All
-            Order allow,deny
-            allow from all
-         &gt;/Directory&lt;
-        RewriteEngine on
-            RewriteCond %{HTTP_HOST} ^camaratek\.com
-            RewriteRule ^(.*) /www/$1 [L]
-            RewriteCond %{HTTP_HOST} ^([^\.]+)\.camaratek\.com
-            RewriteCond /var/www/angular.camaratek.com/%1 -d
-            RewriteRule ^(.*) /$1 [L]
-     &gt;/VirtualHost&lt;
+&lt;VirtualHost *:80&gt;
+    ServerName camaratek.com 
+    ServerAlias angular.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/angular.camaratek.com"
+    &lt;Directory /var/www/angular.camaratek.com&gt;
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        &lt;/Directory&gt;
+    RewriteEngine on
+        RewriteCond %{HTTP_HOST} ^camaratek\.com
+        RewriteRule ^(.*) /www/$1 [L]
+        RewriteCond %{HTTP_HOST} ^([^\.]+)\.camaratek\.com
+        RewriteCond /var/www/angular.camaratek.com/%1 -d
+        RewriteRule ^(.*) /$1 [L]
+&lt;/VirtualHost&gt;
   </pre>
-
 
 4. Après j'execute les commande suivantes: 
 *  <code>systemctl reload apache2</code>
@@ -83,16 +82,15 @@
     <code>angualar/home</code> sur la barre de recherche,
     ça ne marche pas sans ce fichier .htaccess avec ce contenu ci-dessous:
 <code>
-    <pre>
-    &gt;ifModule mod_rewrite.c&lt;
+<pre>
+    &lt;ifModule mod_rewrite.c&gt;
         RewriteEngine On
         RewriteBase /angular.camaratek.com/
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
         RewriteRule (.*) /index.html [QSA,L]
-    &gt;/ifModule&lt;
-
-    </pre>
+    &lt;/ifModule&gt;
+</pre>
 </code>
 
 
