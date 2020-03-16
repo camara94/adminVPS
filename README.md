@@ -36,7 +36,7 @@
    je crée un dossier avec la commande <code>mkdir angular.camaratek.com</code>
    c'est ce dossier qui va heberger tout les fichiers consernant ce sous domaine
 3. et puis après, je me rends au repertoire <code>cd /etc/apache2/sites-available</code>, je créer un fichier de configuration du même nom que 
-  le domaine ou sous domaine sauf que j'ajout à la fin **.conf**.<br> 
+  le domaine ou sous domaine sauf que j'ajout à la fin **.conf**. 
    Par exemple: <code>touch angular.camaratek.com.conf</code>
    et j'ajoute ces lignes ci-dessous:
 <code>
@@ -66,7 +66,7 @@
 *  <code>a2ensite camaratek.com.conf</code> 
 
 ## pour activer le nom de domain(ou sous domaine) dans le VPS
-1. Ensuite j'execute cette commande: "certbot --apache -d angular.camaratek.com"
+1. Ensuite j'execute cette commande: <code>certbot --apache -d angular.camaratek.com</code>
 *   Donner votre Email
 *   Answer YES (2) pour que j'obtienne la redirection redirection HTTPS
 6. pour la redirection, je créer un fichier .htaccess et je le met à la racine 
