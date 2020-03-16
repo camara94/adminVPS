@@ -1,0 +1,55 @@
+pour configurer un sous domaine
+1. il faut d'abord set logge sur son VPS avec son ssh
+2. Aller dans le repertoire "cd /var/www/" et créer un dossier du même que le domaine ou sous domaine 
+   par exemple le sous domaine "angular.camaratek.com" je créer un dossier "mkdir angular.camaratek.com"
+   c'est ce dossier qui va heberger tout les fichier consernant ce sous domaine
+3. et puis après, je me rends au repertoire "cd /etc/apache2/sites-available", je créer un fichier de 
+   configuration du même nom que le domaine ou sous domaine sauf que j'ajout à la fin .conf 
+   par exemple: "touch angular.camaratek.com.conf" et j'ajoute ces lignes ci-dessous:
+
+<VirtualHost *:80>
+    ServerName camaratek.com 
+    ServerAlias angular.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/angular.camaratek.com"
+
+    <Directory /var/www/angular.camaratek.com>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    RewriteEngine on
+        RewriteCond %{HTTP_HOST} ^camaratek\.com
+        RewriteRule ^(.*) /www/$1 [L]
+        RewriteCond %{HTTP_HOST} ^([^\.]+)\.camaratek\.com
+        RewriteCond /var/www/angular.camaratek.com/%1 -d
+        RewriteRule ^(.*) /$1 [L]
+</VirtualHost>
+4.Après j'execute les commande suivantes: 
+ "systemctl reload apache2"
+ "a2ensite camaratek.com.conf" 
+ pour activer le nom de domain(ou sous domaine) dans le VPS
+5.Ensuite j'execute cette commande: "certbot --apache -d angular.camaratek.com"
+	+ Donner votre Email
+	+ Answer YES (2) pour que j'obtienne la redirection redirection HTTPS
+
+6. pour la redirection, je créer un fichier .htaccess et le met à la racine de mon site c'est à dire avec les SPA,
+   quand on tape angualar/home ça ne marche pas sans ce fichier .htaccess avec ce contenu ci-dessous:
+
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /angular.camaratek.com/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule (.*) /index.html [QSA,L]
+</ifModule>
+
+
+
+ 
+
+
+
+
