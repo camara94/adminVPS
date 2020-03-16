@@ -37,7 +37,7 @@
    c'est ce dossier qui va heberger tout les fichiers consernant ce sous domaine
 3. et puis après, je me rends au repertoire <code>cd /etc/apache2/sites-available</code>, je créer un fichier de configuration du même nom que 
   le domaine ou sous domaine sauf que j'ajout à la fin **.conf**.<br> 
-   Par exemple: <code>touch angular.camaratek.com.conf<code>
+   Par exemple: <code>touch angular.camaratek.com.conf</code>
    et j'ajoute ces lignes ci-dessous:
 <code>
 <pre>
