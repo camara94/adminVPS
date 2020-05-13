@@ -1,0 +1,30 @@
+#Donner l'access a Apache a un dossier
+sudo chown -R www-data:www-data ./
+chmod -R 775 ./
+
+#Creer un utilisateur juste pour la base de donnee (Securite)
+CREATE USER 'dbuser'@'localhost' IDENTIFIED BY 'mpd';
+
+GRANT ALL PRIVILEGES ON * . * TO 'dbuser'@'localhost';
+
+FLUSH PRIVILEGES;
+
+<VirtualHost *:80>
+    ServerName camaratek.com 
+    ServerAlias aly.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/aly.camaratek.com/WordPress"
+    <Directory /var/www/aly.camaratek.com/WordPress>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        </Directory>
+    RewriteEngine on
+        RewriteCond %{HTTP_HOST} ^camaratek\.com
+        RewriteRule ^(.*) /www/$1 [L]
+        RewriteCond %{HTTP_HOST} ^([^\.]+)\.camaratek\.com
+        RewriteCond /var/www/aly.camaratek.com/WordPress/%1 -d
+        RewriteRule ^(.*) /$1 [L]
+</VirtualHost>
+  
