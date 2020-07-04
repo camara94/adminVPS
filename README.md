@@ -74,15 +74,22 @@
     <code>angualar/home</code> sur la barre de recherche,
     ça ne marche pas sans ce fichier .htaccess avec ce contenu ci-dessous:
 <code>
-<pre>
-    &lt;ifModule mod_rewrite.c&gt;
-        RewriteEngine On
-        RewriteBase /angular.camaratek.com/
-        RewriteCond %{REQUEST_FILENAME} !-f
-        RewriteCond %{REQUEST_FILENAME} !-d
-        RewriteRule (.*) /index.html [QSA,L]
-    &lt;/ifModule&gt;
-</pre></code>
+  <pre>
+      &lt;ifModule mod_rewrite.c&gt;
+          RewriteEngine On
+          RewriteBase /angular.camaratek.com/
+          RewriteCond %{REQUEST_FILENAME} !-f
+          RewriteCond %{REQUEST_FILENAME} !-d
+          RewriteRule (.*) /index.html [QSA,L]
+      &lt;/ifModule&gt;
+  </pre>
+</code>
+
+## Activer le HTTPS
+* Générer le certificat d'abord: <code>certbot --apache -d &lt;Votre nom de domaine&glt; </code>
+* Redemarrer le service apache2 avec <code>service apache2 reload</code> oubien <code>retart apache2 reload</code>
+
+
 
 
 
