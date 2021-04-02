@@ -1,0 +1,151 @@
+certbot-auto --apache -d angular.camaratek.com  -d bootstrap4.camaratek.com  -d camaratek.com  -d cv2.camaratek.com  -d javascript.camaratek.com  -d react.camaratek.com -d confusion.camaratek.com
+
+<html lang="fr">
+    <head>
+         <meta charset="UTF-8" />
+         <title>Maintenance!</title>
+    </head>
+    <body>
+        <h1>Meri et veuillez patienter pendant que le site est en cours de maintenance</h1>
+	<h1>Le monde du JavaScript moderne(ES6)</h1>
+    </body>
+</html>
+
+touch angular.camaratek.com.conf  bootstrap4.camaratek.com.conf  camaratek.com.conf cv2.camaratek.com.conf  javascript.camaratek.com.conf  raect.camaratek.com.conf
+
+
+
+
+nano camaratek.com.conf 
+<VirtualHost *:80>
+    ServerName camaratek.com 
+    ServerAlias camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/camaratek.com"
+    <Directory /var/www/camaratek.com>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        </Directory>
+    RewriteEngine on
+</VirtualHost>
+
+nano angular.camaratek.com.conf 
+<VirtualHost *:80>
+    ServerName angular.camaratek.com
+    ServerAlias angular.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/angular.camaratek.com"
+    <Directory /var/www/angular.camaratek.com>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        </Directory>
+    RewriteEngine on
+</VirtualHost> 
+
+nano bootstrap4.camaratek.com.conf 
+<VirtualHost *:80>
+    ServerName bootstrap4.camaratek.com
+    ServerAlias bootstrap4.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/bootstrap4.camaratek.com"
+    <Directory /var/www/bootstrap4.camaratek.com>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        </Directory>
+    RewriteEngine on
+</VirtualHost> 
+
+nano cv2.camaratek.com.conf 
+<VirtualHost *:80>
+    ServerName cv2.camaratek.com
+    ServerAlias cv2.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/cv2.camaratek.com"
+    <Directory /var/www/cv2.camaratek.com>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        </Directory>
+    RewriteEngine on
+</VirtualHost> 
+
+nano javascript.camaratek.com.conf 
+<VirtualHost *:80>
+    ServerName javascript.camaratek.com 
+    ServerAlias javascript.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/javascript.camaratek.com"
+    <Directory /var/www/javascript.camaratek.com>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        </Directory>
+    RewriteEngine on
+</VirtualHost>
+ 
+nano react.camaratek.com.conf
+<VirtualHost *:80>
+    ServerName react.camaratek.com
+    ServerAlias react.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/react.camaratek.com"
+    <Directory /var/www/react.camaratek.com>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        </Directory>
+    RewriteEngine on
+</VirtualHost>
+
+nano confusion.camaratek.com.conf
+<VirtualHost *:80>
+    ServerName confusion.camaratek.com
+    ServerAlias confusion.camaratek.com
+    ServerAdmin contact@camaratek.com
+    DocumentRoot "/var/www/confusion.camaratek.com"
+    <Directory /var/www/confusion.camaratek.com>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+        </Directory>
+    RewriteEngine on
+</VirtualHost>
+
+systemctl reload apache2
+a2ensite camaratek.com.conf
+
+systemctl reload apache2
+a2ensite cv2.camaratek.com.conf
+
+systemctl reload apache2
+a2ensite angular.camaratek.com.conf
+
+systemctl reload apache2
+a2ensite react.camaratek.com.conf
+
+systemctl reload apache2
+a2ensite bootstrap4.camaratek.com.conf
+
+systemctl reload apache2
+a2ensite javascript.camaratek.com.conf
+systemctl reload apache2
+a2ensite confusion.camaratek.com.conf
+
+
+<ifModule mod_rewrite.c>
+          RewriteEngine On
+          RewriteBase /react.camaratek.com/
+          RewriteCond %{REQUEST_FILENAME} !-f
+          RewriteCond %{REQUEST_FILENAME} !-d
+          RewriteRule (.*) /index.html [QSA,L]
+</ifModule>
