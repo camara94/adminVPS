@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+    ServerName ungui.stardevcgroup.com
+    ServerAlias ungui.stardevcgroup.com
+    ServerAdmin contact@stardevcgroup.com
+    DocumentRoot /var/www/ungui.stardevcgroup.com
+    <Directory /var/www/ungui.stardevcgroup.com>
+        Options Indexes FollowSymLinks
+        AllowOverride all
+        Require all granted
+    </Directory>
+</VirtualHost>
