@@ -89,7 +89,8 @@
 * Générer le certificat d'abord: <code>certbot --apache -d &lt;Votre nom de domaine&glt; </code>
 * Redemarrer le service apache2 avec <code>service apache2 reload</code> oubien <code>retart apache2 reload</code>
 
-
+## Comment Générer un certificat avec ngnix
+certbot --nginx -d simandou-securite.com
 
 
 
